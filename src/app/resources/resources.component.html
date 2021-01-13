@@ -1,0 +1,136 @@
+<h5>Enter search / filter Text:</h5>
+<input [(ngModel)]="srchText"><br>
+<button (click)="addResource" class="btn btn-primary" data-toggle="modal" data-target="#addResource">Add resource</button>
+<table class="table table-primary table-bordered table-striped">
+
+<tr>
+    <th>id</th>
+    <th>fname</th>
+    <th>lname</th>
+    
+</tr>
+
+
+<tr *ngFor="let r of resources|search:srchText;trackBy: index;let i=index">
+    <td>{{i+1}}</td>
+    <td>{{r.fname}}</td>
+    <td>{{r.lname}}</td>
+    <td><button type="button" (click)="update(r)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Update
+      </button></td>
+</tr>
+</table>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+            <form (ngSubmit)="updatedata(formdemo, userData)" #formdemo="ngForm">
+          
+                <div class="form-group">
+                  <label for="fname">fname</label>
+                  <input
+                    type="text"
+                    id="fname"
+                    class="form-control"
+                    [(ngModel)]="userData.fname" 
+                    name="fname"
+                    required
+                    #fname="ngModel">
+                    <span class="help-block" *ngIf="!fname.valid && fname.touched">Please enter a valid username!</span> 
+                </div>
+                
+                <div class="form-group">
+                  <label for="lname">lname</label>
+                  <input
+                    type="text"
+                    id="lname"
+                    class="form-control"
+                    [(ngModel)]="userData.lname"
+                    name="lname"
+                    required
+                    lname
+                    #lname="ngModel">
+                  <span class="help-block" *ngIf="!lname.valid && lname.touched">Please enter a valid password!</span>
+                </div>
+                <button type="submit" class="btn btn-primary">Save changes</button> 
+             </form> 
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         
+        </div>
+
+      </div>
+    </div>
+</div>
+ 
+
+<!--add Resource-->
+  <div class="modal fade" id="addResource" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+            <form (ngSubmit)="addResource(formdemo, newData)" #formdemo="ngForm">
+          
+                <div class="form-group">
+                  <label for="fname">fname</label>
+                  <input
+                    type="text"
+                    id="fname"
+                    class="form-control"
+                    [(ngModel)]="newData.fname" 
+                    name="fname"
+                    required
+                    #fname="ngModel">
+                    <span class="help-block" *ngIf="!fname.valid && fname.touched">Please enter a valid username!</span> 
+                </div>
+                
+                <div class="form-group">
+                  <label for="lname">lname</label>
+                  <input
+                    type="text"
+                    id="lname"
+                    class="form-control"
+                    [(ngModel)]="newData.lname"
+                    name="lname"
+                    required
+                    lname
+                    #lname="ngModel">
+                  <span class="help-block" *ngIf="!lname.valid && lname.touched">Please enter a valid password!</span>
+                </div>
+                <button type="submit" class="btn btn-primary">Add data</button> 
+             </form> 
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         
+        </div>
+
+      </div>
+    </div>
+</div>
+ 
